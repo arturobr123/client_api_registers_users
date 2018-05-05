@@ -16,7 +16,10 @@ export class UbicacionProvider {
 	taxista:AngularFirestoreDocument<any>; //puede haber una intefaz en vez de any (son los datos de los documentos en firestore)
 
 	//un observador
-	private watch:Subscription;
+	public watch:Subscription;
+
+
+
 
   constructor(private geolocation: Geolocation, private _usuarioProv:UsuarioProvider, private afDB:AngularFirestore ) {
     console.log('Hello UbicacionProvider Provider');
@@ -35,7 +38,13 @@ export class UbicacionProvider {
 
   iniciarGeoLocalizacion(){
 
-  	this.geolocation.getCurrentPosition().then((resp) => {
+  	var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+  	this.geolocation.getCurrentPosition(options).then((resp) => {
 
 		 // resp.coords.latitude
 		 // resp.coords.longitude
@@ -50,7 +59,7 @@ export class UbicacionProvider {
 
 
 		 //OBSERVABLE!!!!!!!! PARA PODER SABER EN TIEMPO REAL SU UBICACION
-			this.watch = this.geolocation.watchPosition().filter((p) => p.coords !== undefined).subscribe((data) => {
+			this.watch = this.geolocation.watchPosition(options).filter((p) => p.coords !== undefined).subscribe((data) => {
 				 // data can be a set of coordinates, or an error (if an error occurred).
 				 console.log("watch:" , data.coords);
 
