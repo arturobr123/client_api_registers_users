@@ -50,7 +50,7 @@ export class UbicacionProvider {
 
 
 		 //OBSERVABLE!!!!!!!! PARA PODER SABER EN TIEMPO REAL SU UBICACION
-			this.watch = this.geolocation.watchPosition().subscribe((data) => {
+			this.watch = this.geolocation.watchPosition().filter((p) => p.coords !== undefined).subscribe((data) => {
 				 // data can be a set of coordinates, or an error (if an error occurred).
 				 console.log("watch:" , data.coords);
 

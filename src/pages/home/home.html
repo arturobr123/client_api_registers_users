@@ -16,6 +16,11 @@
 
 	<!-- this creates a google map on the page with the given lat/lng from -->
 	<!-- the component as the initial center of the map: -->
+	<ion-item>
+		{{user.lat}}
+		{{user.lng}}
+	</ion-item>
+
 	<agm-map [latitude]="user.lat" [longitude]="user.lng" [zoom]="16">
 	  <agm-marker [latitude]="user.lat" [longitude]="user.lng"></agm-marker>
 	</agm-map>
