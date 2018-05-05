@@ -16,7 +16,7 @@ export class UbicacionProvider {
 	taxista:AngularFirestoreDocument<any>; //puede haber una intefaz en vez de any (son los datos de los documentos en firestore)
 
 	//un observador
-	public watch:Subscription;
+	private watch:Subscription;
 
 
 
